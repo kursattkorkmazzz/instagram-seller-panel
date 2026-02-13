@@ -1,135 +1,642 @@
-# Turborepo starter
+# 📦 Instagram Seller Panel (Multi-Business SaaS)
 
-This Turborepo starter is maintained by the Turborepo core team.
+------
 
-## Using this example
+# 1️⃣ PRODUCT VISION
 
-Run the following command:
+## 🎯 Core Value Proposition
 
-```sh
-npx create-turbo@latest
-```
+> “Manage all your Instagram businesses in one simple panel — without Excel, without chaos.”
 
-## What's inside?
+This is NOT an ERP.
+This is a **multi-business control center for Instagram sellers**.
 
-This Turborepo includes the following packages/apps:
+------
 
-### Apps and Packages
+# 2️⃣ ACCOUNT & TENANT STRUCTURE
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+## 🏗 Multi-Tenant Architecture
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+### Structure
 
-### Utilities
+- 1 User
+- Multiple Businesses
+- Each Business has:
+  - Customers
+  - Products
+  - Orders
+  - Shipments
+  - Reports
+  - Subscription
 
-This Turborepo has some additional tools already setup for you:
+This means:
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+- A seller can manage multiple Instagram shops.
+- A digital entrepreneur can manage different brands.
+- An agency can manage client businesses (future expansion).
 
-### Build
+------
 
-To build all apps and packages, run the following command:
+# 3️⃣ SUBSCRIPTION MODEL (Business-Based)
 
-```
-cd my-turborepo
+### 🔑 Subscription is attached to:
 
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
+> ✅ Business (NOT user)
 
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
-```
+Each business must have its own subscription.
 
-You can build a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+### Example
 
-```
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
+User Account: John
+Businesses:
 
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
+- @johnboutique → Pro Plan
+- @johnshoes → Basic Plan
+- @clientbrand → Business Plan
 
-### Develop
+Each business:
 
-To develop all apps and packages, run the following command:
+- Has its own order limits
+- Has its own feature access
+- Can be upgraded separately
 
-```
-cd my-turborepo
+------
 
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
+# 4️⃣ USER FLOW (MULTI-BUSINESS)
 
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
+------
 
-You can develop a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+## 🔐 Login Flow
+
+1. User logs in
+2. If multiple businesses exist:
+   → Business Switcher dropdown appears
+3. User selects active business
+4. Entire dashboard changes context
+
+Top bar element:
 
 ```
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
+Business Switcher ▼
 ```
 
-### Remote Caching
+Psychological effect:
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+👉 Feels like a serious SaaS
+👉 “I manage brands”
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+------
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+# 5️⃣ PRODUCT STRUCTURE (Per Business)
 
-```
-cd my-turborepo
+Each business contains isolated data.
 
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
+## Core Modules (Per Business)
 
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
+1. Customers
+2. Products
+3. Orders
+4. Shipment Tracking
+5. Notifications
+6. Basic Reporting
+7. Subscription & Billing
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
 
-```
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
+Excellent. Now we move from “feature list” to **real SaaS-grade module definition**.
 
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
-```
+Below is a **deep, structured breakdown of each Core Module (Per Business)** in the multi-tenant architecture.
 
-## Useful Links
+Everything below operates **inside a selected Business context**.
 
-Learn more about the power of Turborepo:
+------
 
-- [Tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.dev/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.dev/docs/reference/configuration)
-- [CLI Usage](https://turborepo.dev/docs/reference/command-line-reference)
+# 📦 CORE MODULES (Per Business)
+
+Each business contains isolated data and independent subscription limits.
+
+
+
+# 1️⃣ 🧍 Customers Module
+
+## 🎯 Purpose
+
+Centralize buyer data and remove DM chaos.
+
+
+
+## 📌 Core Features
+
+### 1. Customer List View
+
+Columns:
+
+- Full Name
+- Phone
+- Instagram Username
+- Total Orders
+- Total Revenue
+- Last Order Date
+- Tags (optional future)
+
+Features:
+
+- Search (name / phone / IG handle)
+- Filter (repeat customers / new customers)
+- Sort (revenue / last order)
+
+
+
+### 2. Customer Detail Page
+
+Sections:
+
+#### A. Profile Info
+
+- Name
+- Phone
+- Instagram username
+- Notes
+- Created date
+
+#### B. Order History
+
+- Order list
+- Status badge
+- Total spent summary
+
+#### C. Metrics
+
+- Lifetime Value (LTV)
+
+- Average order value
+
+- Delivery success rate
+
+  
+
+### 3. Quick Actions
+
+- Add order
+- Edit customer
+- Send WhatsApp message
+
+
+
+## 🧠 UX Goal
+
+When seller opens a customer:
+
+👉 Instantly understands the relationship
+👉 Feels organized
+👉 Sees repeat buyer potential
+
+
+
+# 2️⃣ 🛍 Products Module
+
+## 🎯 Purpose
+
+Speed up order creation (NOT inventory management).
+
+
+
+## 📌 Core Features
+
+### 1. Product List
+
+Columns:
+
+- Product Name
+- Price
+- Category
+- Variants count
+- Status (Active / Inactive)
+- Created date
+
+Search & filter enabled.
+
+
+
+### 2. Create / Edit Product
+
+Fields:
+
+- Product name
+- Base price
+- Category (optional)
+- Description (optional)
+- Variants:
+  - Size
+  - Color
+  - Custom attribute
+- Active toggle
+
+
+
+### 3. Order Integration
+
+When creating order:
+
+- Product dropdown
+- Variant selector
+- Auto-fill price
+- Auto-calculate total
+- Manual override allowed
+
+
+
+## 🧠 UX Goal
+
+Order entry under 20 seconds.
+
+Psychological trigger:
+
+👉 Fast input = power
+👉 Clean dropdown = control
+
+------
+
+# 3️⃣ 📦 Orders Module
+
+## 🎯 Purpose
+
+Act as the operational center.
+
+
+
+## 📌 Core Features
+
+### 1. Kanban Board (Default View)
+
+Columns:
+
+- New
+- Preparing
+- Shipped
+- Delivered
+- Cancelled
+
+Drag & drop status change.
+
+Each card shows:
+
+- Customer name
+- Order total
+- Payment status
+- Shipment badge
+- Time since created
+
+
+
+### 2. Table View (Alternative)
+
+Columns:
+
+- Order ID
+- Customer
+- Total
+- Payment Status
+- Order Status
+- Shipment Status
+- Created Date
+
+Filters:
+
+- Date range
+- Payment type
+- Status
+- Delayed shipments
+
+
+
+### 3. Order Detail Page
+
+Sections:
+
+#### A. Order Info
+
+- Customer
+- Product list
+- Price breakdown
+- Discount (future)
+
+#### B. Payment
+
+- Paid / COD
+- Payment date
+
+#### C. Shipment
+
+- Tracking number
+- Courier
+- Status
+- Timeline
+
+#### D. Activity Log
+
+- Status changes
+- Tracking updates
+
+
+
+## 🧠 UX Goal
+
+Seller sees:
+
+👉 What needs action
+👉 What is delayed
+👉 What is completed
+
+Zero confusion.
+
+------
+
+# 4️⃣ 🚚 Shipment Module
+
+## 🎯 Purpose
+
+Eliminate “Where is my order?” chaos.
+
+
+
+## 📌 Core Features
+
+### 1. Shipment Dashboard
+
+Columns:
+
+- Order ID
+- Customer
+- Courier
+- Tracking Number
+- Status
+- Last Updated
+- Delay indicator
+
+Filter by:
+
+- Delayed
+- In transit
+- Delivered
+- Date range
+
+
+
+### 2. Shipment Detail
+
+- Tracking timeline
+- Status history
+- Estimated delivery (if API supports)
+- Last sync timestamp
+
+
+
+### 3. Automation
+
+- Cron-based status polling
+- Auto-mark order delivered when shipment delivered
+- Delay detection logic:
+  - If no update > X days → mark as delayed
+
+
+
+## 🎨 Visual System
+
+Status Colors:
+
+- Blue → In Transit
+- Orange → Out for Delivery
+- Green → Delivered
+- Red → Delayed
+
+
+
+## 🧠 UX Goal
+
+Seller sees red → acts immediately.
+
+No manual courier checking needed.
+
+
+
+# 5️⃣ 🔔 Notifications Module
+
+## 🎯 Purpose
+
+Save time & increase professionalism.
+
+ 
+
+## 📌 Core Features
+
+### 1. Manual Templates (MVP)
+
+Templates:
+
+- Order shipped
+- Delivered
+- Custom message
+
+Dynamic variables:
+
+- {{name}}
+- {{tracking}}
+- {{business_name}}
+
+
+
+### 2. WhatsApp Integration
+
+- One-click open WhatsApp Web
+- Pre-filled message
+- Track “sent” status (optional future)
+
+
+
+### 3. Auto Notifications (Pro Plan)
+
+Triggers:
+
+- Order status → Shipped
+- Shipment status → Delivered
+
+
+
+## 🧠 UX Goal
+
+Seller feels:
+
+👉 Automated
+👉 Professional
+👉 Efficient
+
+------
+
+# 6️⃣ 📊 Reporting Module
+
+## 🎯 Purpose
+
+Show growth without complexity.
+
+
+
+## 📌 Core Dashboard
+
+Metrics:
+
+- Orders this month
+- Revenue this month
+- Delivery rate %
+- Delayed shipments
+- Repeat customer rate
+
+
+
+## 📈 Visual Charts
+
+- Revenue trend (last 30 days)
+- Orders by status
+- Delivery success %
+
+
+
+## 📤 Export
+
+- CSV export (Pro)
+- Date range filtering
+
+
+
+## 🧠 UX Goal
+
+Seller opens dashboard and feels:
+
+👉 Business is growing
+👉 Data-driven
+👉 Motivated
+
+------
+
+# 7️⃣ 💳 Subscription & Billing Module (Per Business)
+
+## 🎯 Purpose
+
+Control access & monetize correctly.
+
+
+
+## 📌 Features
+
+### 1. Plan Overview
+
+- Current plan
+- Order limit usage
+- Feature availability
+- Renewal date
+
+
+
+### 2. Usage Tracking
+
+- Orders used / plan limit
+- % progress bar
+
+If limit reached:
+
+- Block new order creation
+- Show upgrade CTA
+
+
+
+### 3. Billing
+
+- Upgrade / downgrade
+- Payment method
+- Invoice history
+
+## 🧠 UX Goal
+
+Upgrade feels natural.
+
+Not forced.
+
+------
+
+# 🔐 Multi-Tenant Enforcement Rule
+
+Every module:
+
+- Must be scoped by business_id
+- Must validate user access
+- Must isolate data
+
+No cross-business visibility.
+
+User → Multiple Businesses
+
+
+
+------
+
+# 6️⃣ BUSINESS MANAGEMENT MODULE
+
+# 🏢 Business Settings
+
+### Features
+
+- Create new business
+- Business name
+- Instagram handle
+- Business phone
+- Logo upload
+- Timezone
+- Currency
+- Delete / Archive business
+
+------
+
+# 7️⃣ SUBSCRIPTION & BILLING (Per Business)
+
+Each business has:
+
+- Current Plan
+- Order limit
+- Feature access
+- Billing history
+- Upgrade / Downgrade
+
+### Plans Example
+
+Basic – $10/month
+
+- 200 orders
+- Manual notifications
+
+Pro – $20/month
+
+- 1000 orders
+- Auto notifications
+- Advanced reports
+
+Business – $40/month
+
+- Unlimited
+- Priority support
+
+
+
+------
+
+# 🔟 ONBOARDING (UPDATED)
+
+New onboarding:
+
+1. Sign up
+2. Create first business
+3. Choose plan
+4. Add first product
+5. Add first order
+
+Time to first value:
+👉 Under 5 minutes (including subscription)
